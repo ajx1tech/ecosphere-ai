@@ -1,0 +1,16 @@
+{
+  "name": "EcoSphere AI",
+  "short_name": "EcoSphere",
+  "description": "Your Personal Climate Intelligence Assistant",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#022C22",
+  "theme_color": "#10B981",
+  "icons": [
+    {
+      "src": "/globe.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}
