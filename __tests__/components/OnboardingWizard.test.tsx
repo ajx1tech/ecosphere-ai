@@ -1,7 +1,7 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { render, screen, fireEvent } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import OnboardingWizard from '../src/components/OnboardingWizard';
+import OnboardingWizard from '../../src/components/OnboardingWizard';
 
 describe('OnboardingWizard Component', () => {
   it('renders the first step on mount', () => {
@@ -14,7 +14,7 @@ describe('OnboardingWizard Component', () => {
     const nextButton = screen.getByRole('button', { name: /Go to next step/i });
     
     await userEvent.click(nextButton);
-    expect(screen.getByText(/What is your typical diet\?/i)).toBeInTheDocument();
+    expect(await screen.findByText(/What is your typical diet\?/i)).toBeInTheDocument();
   });
 
   it('invalid input (negative number) limits to 0', async () => {
@@ -22,7 +22,8 @@ describe('OnboardingWizard Component', () => {
     const distanceInput = screen.getByLabelText(/Daily Commute Distance/i);
     
     await userEvent.clear(distanceInput);
-    await userEvent.type(distanceInput, '-5');
+    await userEvent.clear(distanceInput);
+    fireEvent.change(distanceInput, { target: { value: '-5' } });
     
     // React's onChange bounds logic sets it to 0
     expect(distanceInput).toHaveValue(0);
@@ -37,7 +38,7 @@ describe('OnboardingWizard Component', () => {
       await userEvent.click(nextBtn);
     }
     
-    expect(screen.getByRole('button', { name: /Calculate my footprint/i })).toBeInTheDocument();
+    expect(await screen.findByRole('button', { name: /Calculate my footprint/i })).toBeInTheDocument();
   });
 
   it('aria-live region updates on step change', async () => {
@@ -50,7 +51,7 @@ describe('OnboardingWizard Component', () => {
     const nextButton = screen.getByRole('button', { name: /Go to next step/i });
     await userEvent.click(nextButton);
     
-    liveRegion = screen.getByText(/Now on step 2/i);
+    liveRegion = await screen.findByText(/Now on step 2/i);
     expect(liveRegion).toBeInTheDocument();
   });
 });

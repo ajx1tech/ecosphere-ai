@@ -1,40 +1,40 @@
-import type { Metadata, Viewport } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
-import Script from "next/script";
-import "./globals.css";
+import type { Metadata, Viewport } from 'next'
+import { Geist, Geist_Mono } from 'next/font/google'
+import Script from 'next/script'
+import './globals.css'
 
 const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
+  variable: '--font-geist-sans',
+  subsets: ['latin'],
+})
 
 const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+  variable: '--font-geist-mono',
+  subsets: ['latin'],
+})
 
 export const metadata: Metadata = {
-  title: "EcoSphere AI",
-  description: "Your Personal Climate Intelligence Assistant",
-  manifest: "/manifest.json",
+  title: 'EcoSphere AI',
+  description: 'Your Personal Climate Intelligence Assistant',
+  manifest: '/manifest.json',
   appleWebApp: {
     capable: true,
-    statusBarStyle: "default",
-    title: "EcoSphere AI",
+    statusBarStyle: 'default',
+    title: 'EcoSphere AI',
   },
-};
+}
 
 export const viewport: Viewport = {
-  themeColor: "#10B981",
-  width: "device-width",
+  themeColor: '#10B981',
+  width: 'device-width',
   initialScale: 1,
   maximumScale: 1,
-};
+}
 
 export default function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode;
+  children: React.ReactNode
 }>) {
   return (
     <html
@@ -52,10 +52,10 @@ export default function RootLayout({
                 window.addEventListener('load', function() {
                   navigator.serviceWorker.register('/sw.js').then(
                     function(registration) {
-                      console.log('ServiceWorker registration successful with scope: ', registration.scope);
+                      // Registration successful
                     },
                     function(err) {
-                      console.log('ServiceWorker registration failed: ', err);
+                      console.error('ServiceWorker registration failed: ', err);
                     }
                   );
                 });
@@ -65,5 +65,5 @@ export default function RootLayout({
         />
       </body>
     </html>
-  );
+  )
 }

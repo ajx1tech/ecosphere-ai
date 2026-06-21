@@ -3,12 +3,12 @@
 >https://www.loom.com/share/603f86305ba54378868456ce918a6f67
 
 ## 🎯 Problem Statement Alignment
-The challenge asks for a solution that helps users **understand, track, and reduce** their carbon footprint through **simple actions and personalized insights**. EcoSphere AI maps directly:
-- **Understand** → Carbon DNA profile + visual breakdown
-- **Track** → Monthly history stored in Firestore, AI-detected habit trend insights  
-- **Reduce** → Ranked, numerically-justified recommendations + Carbon Twin aspirational model + What-If Simulator
-- **Simple actions** → Gamified weekly missions targeting highest-impact category
-- **Personalized insights** → Gemini AI coach receives the user's actual computed footprint data as context, never generic advice
+The challenge asks for a solution that helps individuals "understand, track, and reduce their carbon footprint through simple actions and personalized insights." EcoSphere AI maps directly:
+- **"understand"** → Carbon DNA + visual breakdown
+- **"track"** → Habit Trend Panel + Firestore history
+- **"reduce"** → Simple Action card + Recommendations + What-If Simulator
+- **"simple actions"** → Today's Simple Action card (one-tap, single highest-impact item)
+- **"personalized insights"** → AI Coach grounded in real user data context
 
 ## 🧠 What Makes This Different
 Most carbon trackers are static calculators. EcoSphere AI separates concerns intentionally:

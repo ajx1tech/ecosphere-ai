@@ -74,20 +74,20 @@ describe('carbonEngine - deriveCarbonDNA', () => {
   });
 
   it('identifies Eco Minimalist', () => {
-    const dna = deriveCarbonDNA(mockProfile({}), mockBreakdown({ total: 1500 }));
+    const dna = deriveCarbonDNA(mockProfile({}), mockBreakdown({ total: 1500, energy: 600, shopping: 200, transport: 200, diet: 200, digital: 300 }));
     expect(dna.archetype).toBe('Eco Minimalist');
   });
 });
 
 describe('carbonEngine - calculateRiskScore', () => {
   it('bounds score between 0 and 100', () => {
-    expect(calculateRiskScore({ total: 0 } as any)).toBe(100);
-    expect(calculateRiskScore({ total: 15000 } as any)).toBe(0);
+    expect(calculateRiskScore({ total: 0 } as FootprintBreakdown)).toBe(100);
+    expect(calculateRiskScore({ total: 15000 } as FootprintBreakdown)).toBe(0);
   });
 
   it('higher footprint equals lower score', () => {
-    const scoreLow = calculateRiskScore({ total: 2000 } as any);
-    const scoreHigh = calculateRiskScore({ total: 8000 } as any);
+    const scoreLow = calculateRiskScore({ total: 2000 } as FootprintBreakdown);
+    const scoreHigh = calculateRiskScore({ total: 8000 } as FootprintBreakdown);
     expect(scoreLow).toBeGreaterThan(scoreHigh);
   });
 });
@@ -141,8 +141,7 @@ describe('carbonEngine - rankRecommendations', () => {
   };
 
   it('sorts descending by estimated savings', () => {
-    const breakdown = calculateFootprint(profile);
-    const recs = rankRecommendations(profile, breakdown);
+    const recs = rankRecommendations(profile);
     
     expect(recs.length).toBeGreaterThan(0);
     for (let i = 0; i < recs.length - 1; i++) {

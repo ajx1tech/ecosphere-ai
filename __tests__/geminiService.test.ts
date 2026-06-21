@@ -2,15 +2,17 @@ import { askSustainabilityCoach } from '../src/lib/geminiService';
 import { CarbonProfile, FootprintBreakdown } from '../src/lib/types';
 
 // Mock the GoogleGenerativeAI module
-const mockSendMessage = jest.fn();
-const mockStartChat = jest.fn().mockReturnValue({ sendMessage: mockSendMessage });
-const mockGetGenerativeModel = jest.fn().mockReturnValue({ startChat: mockStartChat });
-
 jest.mock('@google/generative-ai', () => {
+  const mockSendMessage = jest.fn();
   return {
-    GoogleGenerativeAI: jest.fn().mockImplementation(() => {
-      return { getGenerativeModel: mockGetGenerativeModel };
-    })
+    GoogleGenerativeAI: jest.fn().mockImplementation(() => ({
+      getGenerativeModel: () => ({
+        startChat: () => ({
+          sendMessage: mockSendMessage
+        })
+      })
+    })),
+    __mockSendMessage: mockSendMessage
   };
 });
 
@@ -18,6 +20,9 @@ describe('geminiService - askSustainabilityCoach', () => {
   const profile = {} as CarbonProfile;
   const breakdown = { total: 5000, transport: 1000, diet: 1000, shopping: 1000, energy: 1000, digital: 1000 } as FootprintBreakdown;
   const riskScore = 50;
+
+  // eslint-disable-next-line @typescript-eslint/no-require-imports
+  const { __mockSendMessage: mockSendMessage } = require('@google/generative-ai');
 
   beforeEach(() => {
     jest.clearAllMocks();
