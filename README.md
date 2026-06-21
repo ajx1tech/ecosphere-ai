@@ -1,6 +1,6 @@
 # 🌍 EcoSphere AI — Your Personal Climate Intelligence Assistant
 
-> Built for PromptWars: Virtual | Challenge 3: Carbon Footprint Awareness Platform
+>https://www.loom.com/share/603f86305ba54378868456ce918a6f67
 
 ## 🎯 Problem Statement Alignment
 The challenge asks for a solution that helps users **understand, track, and reduce** their carbon footprint through **simple actions and personalized insights**. EcoSphere AI maps directly:
@@ -73,12 +73,10 @@ npm run test:coverage
 - No authentication implemented; anonymous session ID via localStorage/UUID for hackathon scope
 - Region selector currently informational (future: region-specific grid emission factors)
 
-## 🌐 Live Demo
-[Deployed on Google Cloud Run](YOUR_CLOUD_RUN_URL)
 
 ## Google Services Used
 - **Google Gemini API** — AI sustainability coach + weekly summary generation
 - **Firebase Firestore** — Profile history persistence for habit detection
-- **Google Cloud Run** — Production deployment
+- **Google Cloud Run / Vercel** — Production deployment
 
 Built with 🌱 by [Ajit Sharma](https://github.com/ajx1tech)
